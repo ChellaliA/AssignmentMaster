@@ -1,0 +1,21 @@
+{
+    "name": "1/jobby",
+    
+
+    "authors": [
+        {
+            "name": "ahmed amin",
+            "email": "ahmed.amin@example.com"
+        }
+    ],
+
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "config\\": "config/",
+            "Exceptions\\": "Exceptions/",
+            "Source\\": "src/"
+        }
+    }
+}
