@@ -2,7 +2,7 @@
 
 namespace config\Database;
 
-require_once '/laragon/www/phpProject/config/config.php';
+require_once '/laragon/www/AssignmentMaster/config/config.php';
 
 
 class DBConnection {
