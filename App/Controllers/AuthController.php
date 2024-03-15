@@ -24,14 +24,13 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $errors = (new Validator())->LoginValidate($request->data());
+        $errors = (new Validator())->LoginValidate($request->body());
         if (count($errors) > 0) {
             return new Response("inputs error: ", $errors);
         } else {
-            $user = (new User())->readOne(['username' => $request->data()['username']]);
+            $user = (new User())->getUserByUsername($request->body()['username']);
             if ($user) {
-                if (password_verify($request->data()['password'], $user->password)) {
-                    var_dump($user);
+                if (password_verify($request->body()['password'], $user->password)) {
                     SessionManager::set('user_id', $user->user_id);
                     SessionManager::set('user_type', $user->user_type);
                     SessionManager::setAuthenticated(true);

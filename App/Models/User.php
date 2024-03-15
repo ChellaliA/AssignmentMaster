@@ -14,5 +14,22 @@ class User extends ModelsModel
   {
   }
 
+  public function getUserByUsername($username)
+  {
+      $query = "
+          SELECT
+              user_id,
+              username,
+              password,
+              user_type
+          FROM
+              Users
+          WHERE
+              username = :username;
+      ";
+      $params = [':username' => $username];
+      return $this->executeSQL($query, 'fetch', $params);
+  }
+  
 
 }

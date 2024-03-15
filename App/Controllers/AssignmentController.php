@@ -26,10 +26,10 @@ class AssignmentController extends Controller
 
    public function create(Request $request)
    {
-      $data=$request->data();
+      $data=$request->body();
       $data['course_id'] = $request->id();
       try {
-         $Assignment = (new Assignment())->create($data);
+         $Assignment = (new Assignment())->createAssignment($data);
          if ($Assignment) {
             return new Response("Assignment created successfully ");
          }
@@ -40,7 +40,7 @@ class AssignmentController extends Controller
    
    public function redirect(Request $request)
    {
-      var_dump($request->data());
+      var_dump($request->body());
       return (new Response())->redirect(BASE_URL . '/test');
    }
 

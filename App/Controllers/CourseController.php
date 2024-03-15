@@ -34,10 +34,10 @@ class CourseController extends Controller
 
    public function create(Request $request)
    {
-      $data=$request->data();
-      $data['teacher_id'] = SessionManager::get('user_id');
+      $data=$request->body();
+      $body['teacher_id'] = SessionManager::get('user_id');
       try {
-         $course = (new Course())->create($data);
+         $course = (new Course())->createCourse($body);
          if ($course) {
             return new Response("course created successfully ");
          }

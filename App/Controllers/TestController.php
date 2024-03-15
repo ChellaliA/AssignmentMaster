@@ -23,7 +23,7 @@ class TestController extends Controller
 
    public function redirect(Request $request)
    {
-      var_dump($request->data());
+      var_dump($request->body());
       return (new Response())->redirect(BASE_URL . '/test');
    }
 

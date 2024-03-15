@@ -5,23 +5,23 @@ namespace App\Http;
 
 class Request
 {
-    protected $data;
+    protected $body;
     public $Params;
     protected $server;
     protected $id;
 
 
-    public function __construct($data, $Params, $server)
+    public function __construct($body, $Params, $server)
     {
         $this->id - null;
         $this->Params = $Params;
-        $this->data = $data;
+        $this->body = $body;
         $this->server = $server;
     }
 
-    public function data()
+    public function body()
     {
-        return $this->data;
+        return $this->body;
     }
 
     public function method()
@@ -52,7 +52,7 @@ class Request
 
     public function post($key, $default = null)
     {
-        return $this->data[$key] ?? $default;
+        return $this->body[$key] ?? $default;
     }
 
 

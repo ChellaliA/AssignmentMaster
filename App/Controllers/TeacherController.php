@@ -4,27 +4,20 @@
 namespace App\Controllers;
 
 
-use App\Http\Request;
-use App\Http\Response;
-use App\Helpers\ViewManager;
-use App\Controllers\Controller;
 
+use App\Http\Response;
+use App\Models\Teacher;
+use App\Controllers\Controller;
+use App\Helpers\SessionManager;
+use App\Models\Course;
 
 class TeacherController extends Controller
 {
 
-   public function index()
+   public function showTeacherDashboard()
    {
-      $body = ViewManager::renderView('test');
-      //$body = ViewManager::renderView('web.users', compact('object1', 'object2'));
-      return  new Response($body);
+      $teacher= (new Teacher())->getTeacherById(SessionManager::get('user_id'));
+      $courses = (new Course())->getTeacherCreatedCourses($teacher->teacher_id);
+      return  new Response(var_dump($teacher,$courses));
    }
-
-
-   public function redirect(Request $request)
-   {
-      var_dump($request->data());
-      return (new Response())->redirect(BASE_URL . '/test');
-   }
-
 }

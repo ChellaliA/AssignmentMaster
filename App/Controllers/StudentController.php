@@ -13,7 +13,7 @@ use App\Controllers\Controller;
 class StudentController extends Controller
 {
 
-   public function index()
+   public function showStudentDashboard()
    {
       $body = ViewManager::renderView('test');
       //$body = ViewManager::renderView('web.users', compact('object1', 'object2'));
@@ -23,7 +23,7 @@ class StudentController extends Controller
 
    public function redirect(Request $request)
    {
-      var_dump($request->data());
+      var_dump($request->body());
       return (new Response())->redirect(BASE_URL . '/test');
    }
 
