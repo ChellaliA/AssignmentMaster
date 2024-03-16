@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 14, 2024 at 01:32 PM
+-- Generation Time: Mar 16, 2024 at 02:14 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -32,8 +32,17 @@ CREATE TABLE `assignments` (
   `assignment_name` varchar(255) NOT NULL,
   `assignment_description` text,
   `due_date` date DEFAULT NULL,
-  `course_id` int DEFAULT NULL
+  `course_id` int DEFAULT NULL,
+  `created_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `assignments`
+--
+
+INSERT INTO `assignments` (`assignment_id`, `assignment_name`, `assignment_description`, `due_date`, `course_id`, `created_at`) VALUES
+(1, 'Sorting Algorithm Comparison', 'In this assignment, you will implement and compare the performance of three different sorting algorithms: Bubble Sort, Merge Sort, and Quick Sort. You will write code to generate random arrays of integers of varying sizes (e.g., 100, 1000, 10000 elements) and measure the time taken by each sorting algorithm to sort these arrays.\n\nYour report should include:\n\nImplementation details of each sorting algorithm.\nA comparison of the time complexity of the three algorithms (best case, average case, worst case).\nA graphical representation (e.g., a chart or graph) showing the time taken by each algorithm to sort arrays of different sizes.\nA discussion on the strengths and weaknesses of each sorting algorithm based on your experimental results.\nThis assignment will help you understand the practical implications of different sorting algorithms and their performance characteristics in real-world scenarios.', '2024-03-30', 1, '2024-03-14'),
+(2, 'Data Structures for Efficient Text Processing', 'In this assignment, students will explore the application of various data structures in text processing tasks. The goal is to develop efficient algorithms for common text manipulation operations such as searching, editing, and indexing.\n\nStudents will start by implementing basic data structures such as arrays, linked lists, and hash tables to store and manipulate text data. They will then move on to more advanced data structures like suffix trees or suffix arrays to efficiently perform substring searches and pattern matching.\n\nThe main tasks of the assignment include:\n\nImplementing a basic text editor with functionalities like insert, delete, and search.\nDeveloping algorithms to efficiently search for substrings within a given text using data structures like hash tables or suffix trees.\nImplementing an indexing mechanism to facilitate fast retrieval of specific words or phrases within large text corpora.\nAnalyzing the time and space complexities of different data structures and algorithms implemented.\nWriting a report detailing the performance comparison between different data structures and their suitability for various text processing tasks.\nThrough this assignment, students will gain hands-on experience in applying data structures to real-world problems and understand the importance of choosing the right data structure for efficient text processing applications.', '2024-03-30', 1, '2024-03-15');
 
 -- --------------------------------------------------------
 
@@ -48,6 +57,13 @@ CREATE TABLE `courses` (
   `teacher_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_name`, `course_description`, `teacher_id`) VALUES
+(1, 'Data Structures and Algorithms', 'Study of essential data structures (arrays, linked lists, trees, graphs, etc.) and algorithms (searching, sorting, recursion, dynamic programming, etc.) used in software development.', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +74,9 @@ CREATE TABLE `enrollments` (
   `enrollment_id` int NOT NULL,
   `student_id` int DEFAULT NULL,
   `course_id` int DEFAULT NULL,
-  `state` enum('accepted','pending','rejected') DEFAULT 'pending'
+  `state` enum('accepted','pending','rejected') DEFAULT 'pending',
+  `attempt_date` date DEFAULT NULL,
+  `response_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -118,6 +136,13 @@ CREATE TABLE `teachers` (
   `teacher_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`teacher_id`, `user_id`, `teacher_name`, `teacher_lastname`, `teacher_number`) VALUES
+(1, 1, 'Ahmed-Amin', 'CHELLALI', 'INFDr202035077330');
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +155,13 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `user_type` enum('Student','Teacher') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `user_type`) VALUES
+(1, 'ChellaliA', '$2y$10$Yl5lJGSeLj6BoJx3y86vWubMO5xMoiq5u5gJIfXhq.ePreno8K4yi', 'Teacher');
 
 --
 -- Indexes for dumped tables
@@ -200,13 +232,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `assignment_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `assignment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `course_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `enrollments`
@@ -236,13 +268,13 @@ ALTER TABLE `submissions`
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `teacher_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `teacher_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
