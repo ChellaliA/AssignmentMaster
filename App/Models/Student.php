@@ -14,5 +14,19 @@ class Student extends ModelsModel
   {
   }
 
+  public function getStudentId($user_id)
+  {
+      $query = "
+          SELECT
+              student_id
+          FROM
+              Students
+          WHERE
+              user_id = :user_id;
+      ";
+      $params = [':user_id' => $user_id];
+      return $this->executeSQL($query, 'fetch', $params);
+  }
+  
 
 }

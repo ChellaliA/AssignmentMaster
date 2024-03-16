@@ -1,4 +1,5 @@
 <?  
+
 // Render the assignment details section.
 // Display detailed information about the assignment, such as the assignment name, description, due date, and any additional instructions provided by the teacher.
 // Include an option for the student to view any files attached to the assignment.

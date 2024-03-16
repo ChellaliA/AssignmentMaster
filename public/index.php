@@ -13,18 +13,23 @@ $router = new Router();
 // test 
 $router->get('/test', 'App\Controllers\TestController@index');
 
-// Auth
+// auth
 $router->get('/login','App\Controllers\AuthController@login');
 $router->post('/login','App\Controllers\AuthController@loginPost');
 $router->post('/logout','App\Controllers\AuthController@logout');
 
-// User Dashboard
+// dashboard
 $router->get('/dashboard','App\Controllers\DashboardController@index');
 
-//Teacher
-$router->post('/courses/create','App\Controllers\CourseController@create');
-$router->post('/courses/:id','App\Controllers\CourseController@index');
-$router->post('/courses/:id/assignments/create','App\Controllers\AssignmentController@create');
+
+
+// course
+$router->get('/courses/:id','App\Controllers\CourseController@index'); // view course
+$router->post('/courses/create','App\Controllers\CourseController@create'); // create course
+
+// assignment
+$router->get('/assignments/:id','App\Controllers\AssignmentController@index'); // view assignment
+$router->post('/courses/:id/assignments/create','App\Controllers\AssignmentController@create'); // create assignment
 
 try {
 
